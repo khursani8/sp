@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<style>
+	h4 {
+		text-align: center;
+	}
+
+	h1 {
+		text-align: center;
+	}
+
+	p {
+		text-align: center;
+	}
+</style>
+
+
+<head>
+	<title>SockCatcher</title>
+</head>
+
+<body>
+	<div class="container">
+		<div class="header" align="center"><img src="includes/logo.gif" alt="" name="" width="180" height="120"
+				id="Home" />
+			<h1 align="center">SockCatcher</h1>
+		</div>
+		<div class="content">
+			<p>&nbsp;</p>
+			<fieldset>
+				<legend>Insert possible sockpuppet sentence</legend>
+				<h4>
+					<center>Master</center>
+					</br>
+					<textarea id="a" align="center" rows="6" cols="50"> </textarea>
+				</h4>
+				<h4>
+					<center>Puppet 1</center>
+					</br>
+					<textarea id="one" align="center" rows="6" cols="50"> </textarea>
+				</h4>
+				<h4>
+					<center>Puppet 2</center>
+					</br>
+					<textarea id="two" align="center" rows="6" cols="50"> </textarea>
+				</h4>
+				<h4>
+					<center>Puppet 3</center>
+					</br>
+					<textarea id="three" align="center" rows="6" cols="50"> </textarea>
+				</h4>
+				<pre><p id="result"></p></pre>
+				<p><input type="button" value="Submit" onclick="submit()" /></p>
+				</center>
+				</p>
+		</div>
+		<div class="footer">
+			<p align="center">2019 SockCatcher</p>
+			<!-- end .footer -->
+		</div>
+</body>
+<script>
+	async function submit() {
+		const a = document.getElementById('a').value.trim()
+		const one = document.getElementById('one').value.trim()
+		const two = document.getElementById('two').value.trim()
+		const three = document.getElementById('three').value.trim()
+		const value = await fetch(`/api?a=${a}&one=${one}&two=${two}&three=${three}`)
+		document.getElementById("result").innerHTML = await value.text()
+	}
+</script>
+
+</html>
