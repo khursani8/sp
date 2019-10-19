@@ -3,6 +3,7 @@ import scipy
 import json
 from starlette.requests import Request
 from starlette.templating import Jinja2Templates
+from starlette.staticfiles import StaticFiles
 
 model = SentenceTransformer('m')
 
@@ -15,7 +16,7 @@ templates = Jinja2Templates(directory=".")
 def read_root(request: Request):
     return templates.TemplateResponse("index.html",{"request": request})
 
-# app.mount("/", StaticFiles(directory="."))
+app.mount("/includes", StaticFiles(directory="./includes"))
 
 @app.get("/api")
 def infer(a: str = None,one:str=None,two:str=None,three:str=None):
